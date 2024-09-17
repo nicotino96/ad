@@ -46,6 +46,12 @@ public class SimpleMathDemo {
         int random = (int) ((length * Math.random()) + start);
         return random;
     }
+    public int randomNumberBetween(int min, int max){
+        if(min>=max)
+            return -1;
+        int random = (int) (((max-min)*Math.random())+ min);
+        return random;
+    }
 
 
 
