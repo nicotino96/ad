@@ -27,6 +27,10 @@ public class SimpleMathDemo {
             }
         }
     }
+    public void printNumber(int nombreArbitrario) {
+        System.out.println(nombreArbitrario);
+    }
+
 
 
 }

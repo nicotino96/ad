@@ -11,6 +11,7 @@ public class Main {
         System.out.println(simpleMathDemo.calculateResult());
         simpleMathDemo.printMultiplicationInfo();
         simpleMathDemo.loop50Times();
+        simpleMathDemo.printNumber(5895);
     }
 }
 
