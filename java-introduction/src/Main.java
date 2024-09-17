@@ -7,6 +7,8 @@ public class Main {
         String miString= greeter.byeWorld();
         System.out.println(miString);
         System.out.println(greeter.sumTwoNumbers());
+        SimpleMathDemo simpleMathDemo = new SimpleMathDemo();
+        System.out.println(simpleMathDemo.calculateResult());
     }
 }
 
