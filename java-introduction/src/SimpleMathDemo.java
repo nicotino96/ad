@@ -39,6 +39,13 @@ public class SimpleMathDemo {
         System.out.println("Este es el producto de tus dos valores:");
         System.out.println(num1 * num2);
     }
+    public int randomNumberInRange(int start, int length){
+        if(length<=0){
+            return -1;
+        }
+        int random = (int) ((length * Math.random()) + start);
+        return random;
+    }
 
 
 
