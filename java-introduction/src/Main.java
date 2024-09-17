@@ -9,6 +9,8 @@ public class Main {
         System.out.println(greeter.sumTwoNumbers());
         SimpleMathDemo simpleMathDemo = new SimpleMathDemo();
         System.out.println(simpleMathDemo.calculateResult());
+        simpleMathDemo.printMultiplicationInfo();
+        simpleMathDemo.loop50Times();
     }
 }
 
