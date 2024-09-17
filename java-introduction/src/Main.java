@@ -6,6 +6,7 @@ public class Main {
         cat.meow();
         String miString= greeter.byeWorld();
         System.out.println(miString);
+        System.out.println(greeter.sumTwoNumbers());
     }
 }
 
