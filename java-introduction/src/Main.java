@@ -12,6 +12,7 @@ public class Main {
         simpleMathDemo.printMultiplicationInfo();
         simpleMathDemo.loop50Times();
         simpleMathDemo.printNumber(5895);
+        simpleMathDemo.printProduct(3,9);
     }
 }
 

@@ -2,14 +2,14 @@ public class SimpleMathDemo {
     private int firstNumber(){
         return 3172;
     }
-    private int seccondNumber(){
+    private int secondNumber(){
         return 1408;
     }
     private int thirdNumber(){
         return 4920;
     }
     public int calculateResult(){
-        return firstNumber()+seccondNumber()+thirdNumber();
+        return firstNumber()+secondNumber()+thirdNumber();
     }
     public void printMultiplicationInfo() {
         System.out.println("Los múltiplos de 7 menores que 70 son:");
@@ -29,6 +29,10 @@ public class SimpleMathDemo {
     }
     public void printNumber(int nombreArbitrario) {
         System.out.println(nombreArbitrario);
+    }
+    public void printProduct(int n1, int n2){
+        int result=n1*n2;
+        System.out.println(result);
     }
 
 
