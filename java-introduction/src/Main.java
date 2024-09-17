@@ -4,6 +4,8 @@ public class Main {
         greeter.sayHello();
         Cat cat = new Cat();
         cat.meow();
+        String miString= greeter.byeWorld();
+        System.out.println(miString);
     }
 }
 
