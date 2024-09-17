@@ -34,6 +34,12 @@ public class SimpleMathDemo {
         int result=n1*n2;
         System.out.println(result);
     }
+    public void printProduct(String var, int num1, int num2) {
+        System.out.println("Muy buenas," + " " + var);
+        System.out.println("Este es el producto de tus dos valores:");
+        System.out.println(num1 * num2);
+    }
+
 
 
 
