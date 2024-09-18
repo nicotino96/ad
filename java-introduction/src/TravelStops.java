@@ -24,6 +24,9 @@ public class TravelStops {
             System.out.println(stops[i]);
         }
     }
+    public void modifyStop(int position, String nuevoValor){
+        stops[position]=nuevoValor;
+    }
 
 }
 
