@@ -15,4 +15,9 @@ public class NewTravelStops {
     public void addStop(String newValue){
         stops.add(newValue);
     }
+    public void showAllStops(){
+        for(String a : stops){
+            System.out.println(a);
+        }
+    }
 }
