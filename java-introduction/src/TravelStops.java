@@ -19,7 +19,11 @@ public class TravelStops {
     public void printStop(int position) {
         System.out.println(this.stops[position]);
     }
-
+    public void printEveryStop(){
+        for(int i=0;i< stops.length;i++){
+            System.out.println(stops[i]);
+        }
+    }
 
 }
 
