@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class HomeCinemaPreferences {
     public String getUsername() {
@@ -54,9 +51,29 @@ public class HomeCinemaPreferences {
         if (firstHalf.equals("prefersDarkMode")) {
             this.darkModePreferred=secondHalf.equals("true");
         }
-
-
-
     }
+    public void writeToFile() {
+        String file ="assets\\cinemaPrefs.txt";
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            // Escribimos la primera línea
+            bufferedWriter.write("username=");
+            bufferedWriter.write(this.username);
+            bufferedWriter.newLine();
+            // Escribimos la segunda línea
+            if (this.darkModePreferred) {
+                bufferedWriter.write("prefersDarkMode=true");
+            } else {
+                bufferedWriter.write("prefersDarkMode=false");
+            }
+            bufferedWriter.newLine();
+            bufferedWriter.flush(); // Guardamos el fichero a disco
+            fileWriter.close(); // Y lo cerramos
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
