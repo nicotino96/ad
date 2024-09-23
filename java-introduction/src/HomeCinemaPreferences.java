@@ -1,4 +1,5 @@
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.*;
 
@@ -21,25 +22,18 @@ public class HomeCinemaPreferences {
 
     private String username;
     private boolean darkModePreferred;
-
-    public HomeCinemaPreferences() throws IOException {
-        String file ="assets\\cinemaPrefs.txt";
-        try {
-            FileReader reader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            String newLine = null;
-            do {
-                newLine = bufferedReader.readLine();
-                System.out.println(newLine);
-                parseLine(newLine);
-            } while (newLine != null);
-            reader.close();
-
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+    @Deprecated
+    public HomeCinemaPreferences() {
+        initializeFromTXT();
+    }
+    public HomeCinemaPreferences(boolean readJSON) {
+        if (readJSON) {
+            initializeFromJSON();
+        } else {
+            initializeFromTXT();
         }
     }
+
     private void parseLine(String line) {
         if (line == null) {
             return;
@@ -99,6 +93,35 @@ public class HomeCinemaPreferences {
         writer.close();
 
     }
+    private void initializeFromJSON() {
+        try {
+            JSONTokener tokener = new JSONTokener(new FileReader("assets\\cinemaPrefs.json"));
+            JSONObject jsonObject = new JSONObject(tokener);
+            String fileUsername = jsonObject.getString("username");
+            boolean fileDarkMode = jsonObject.getBoolean("prefersDarkMode");
+            this.username = fileUsername;
+            this.darkModePreferred = fileDarkMode;
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void initializeFromTXT() {
+        String file = "assets\\cinemaPrefs.txt";
+        try {
+            FileReader reader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String newLine = null;
+            do {
+                newLine = bufferedReader.readLine();
+                System.out.println(newLine);
+                parseLine(newLine);
+            } while (newLine != null);
+            reader.close();
 
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
