@@ -1,6 +1,15 @@
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 public class HomeCinemaPreferences {
@@ -124,4 +133,29 @@ public class HomeCinemaPreferences {
             throw new RuntimeException(e);
         }
     }
+    public void saveExampleXML() throws ParserConfigurationException, TransformerException {
+        DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory1.newDocumentBuilder();
+        Document xmlDocument = builder.newDocument();
+        Element rootNode = xmlDocument.createElement("Student");
+        xmlDocument.appendChild(rootNode);
+        Element node1 = xmlDocument.createElement("Name");
+        Text node1Content = xmlDocument.createTextNode("Pepe Depura");
+        node1.appendChild(node1Content);
+        rootNode.appendChild(node1);
+        Element node2 = xmlDocument.createElement("IsLearning");
+        Text node2Content = xmlDocument.createTextNode("true");
+        node2.appendChild(node2Content);
+        rootNode.appendChild(node2);
+        TransformerFactory factory2 = TransformerFactory.newInstance();
+        Transformer transformer = factory2.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        DOMSource dom = new DOMSource(xmlDocument);
+        StreamResult outputStream = new StreamResult(new File("assets\\example.xml"));
+
+        transformer.transform(dom, outputStream);
+
+
+    }
+
 }
