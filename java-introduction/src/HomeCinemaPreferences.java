@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.io.*;
 
 public class HomeCinemaPreferences {
@@ -73,6 +75,29 @@ public class HomeCinemaPreferences {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void saveExampleJSON() throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", "Pepe Depura");
+        jsonObject.put("isLearning", true);
+
+        FileWriter writer = new FileWriter("assets\\example.json");
+        jsonObject.write(writer, 2, 0); // Estos números indican la identación del resultado,
+        // espacios en blanco que mejoran la legibilidad
+        writer.flush();
+        writer.close();
+
+    }
+    public void writeJSON() throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", this.username);
+        jsonObject.put("prefersDarkMode", this.darkModePreferred);
+        FileWriter writer = new FileWriter("assets\\cinemaPrefs.json");
+        jsonObject.write(writer, 2, 0); // Estos números indican la identación del resultado,
+        // espacios en blanco que mejoran la legibilidad
+        writer.flush();
+        writer.close();
+
     }
 
 
