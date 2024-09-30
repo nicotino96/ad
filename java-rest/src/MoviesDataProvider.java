@@ -12,6 +12,8 @@ public class MoviesDataProvider {
             // Se ha establecido la conexión
             // ...
             System.out.println("The connection has been established successfully");
+            conn.close(); // Cerramos la conexión
+            System.out.println("Connection closed");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
