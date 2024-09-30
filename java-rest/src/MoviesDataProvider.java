@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MoviesDataProvider {
 
@@ -23,4 +24,27 @@ public class MoviesDataProvider {
             throw new RuntimeException(e);
         }
     }
+    public ArrayList<String> getTwoColumns() {
+        ArrayList<String> finalResult = new ArrayList<>();
+        String connectionStr = "jdbc:sqlite:db/sqlite3/movies.db";
+        try {
+            Connection conn = DriverManager.getConnection(connectionStr);
+            // Crear y ejecutar la consulta
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery("SELECT title, countryIso3166 FROM TMovies");
+            while(result.next()) {
+                String firstColumnValue = result.getString(1);
+                String secondColumValue = result.getString(2);
+                String concatenated = firstColumnValue + ", " + secondColumValue;
+                finalResult.add(concatenated);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return finalResult;
+    }
+
+
+
 }
