@@ -10,9 +10,10 @@ public class SimpleREST {
             this.component = new Component();
             this.component.getServers().add(Protocol.HTTP, 8125);
             VirtualHost host = this.component.getDefaultHost();
-            host.attach("/example", SimpleGetExample.class);
+
             host.attach("/example", SimpleGetExample.class);
             host.attach("/example2", AnotherGetExample.class);
+            host.attach("/example3", JSONGetExample.class);
             this.component.start();
         } catch (Exception e) {
             throw new RuntimeException(e);
