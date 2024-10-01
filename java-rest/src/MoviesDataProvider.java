@@ -99,6 +99,26 @@ public class MoviesDataProvider {
             throw new RuntimeException(e);
         }
         return firstColumnValue;
+
+    }
+    public ArrayList<String> getResultsIssue8(){
+        ArrayList<String> finalResult = new ArrayList<>();
+        String connectionStr = "jdbc:sqlite:db/sqlite3/movies.db";
+        try {
+            Connection conn = DriverManager.getConnection(connectionStr);
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery("SELECT title, id FROM TMovies WHERE year>1988 or duration<148");
+            while(result.next()) {
+                String firstColumnValue = result.getString(1);
+                String secondColumValue = result.getString(2);
+                String concatenated = secondColumValue+","+firstColumnValue;
+                finalResult.add(concatenated);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return finalResult;
     }
 
 
