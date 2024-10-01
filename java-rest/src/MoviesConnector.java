@@ -44,5 +44,17 @@ public class MoviesConnector {
             throw new RuntimeException(e);
         }
     }
+    public boolean changeDurationByFilmId(int newDuration, int filmID){
+        try {
+            Statement statement = this.connection.createStatement();
+            int affectedRows = statement.executeUpdate("UPDATE TMovies SET duration = "+newDuration+" WHERE id = "+filmID);
+            statement.close();
+            return affectedRows==1;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }
