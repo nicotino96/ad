@@ -84,7 +84,7 @@ public class MoviesDataProvider {
         }
         return finalResult;
     }
-    public String getResultsIssue7(){
+    public String getResultIssue7 (){
         String firstColumnValue = "";
         String connectionStr = "jdbc:sqlite:db/sqlite3/movies.db";
         try {
