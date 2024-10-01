@@ -54,6 +54,16 @@ public class MoviesConnector {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public boolean updateYearByFilmId(int newYear, int filmId){
+        try {
+            Statement statement = this.connection.createStatement();
+            int affectedRows = statement.executeUpdate("UPDATE TMovies SET year = "+newYear+" WHERE id = "+filmId);
+            return affectedRows==1;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
