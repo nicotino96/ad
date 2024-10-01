@@ -34,5 +34,15 @@ public class MoviesConnector {
             throw new RuntimeException(e);
         }
     }
+    public boolean insertComedy(String title, int year, int duration, String countryCode, String synopsis){
+        try {
+            Statement statement = this.connection.createStatement();
+            int affectedRows=statement.executeUpdate("INSERT INTO TMovies (title, year, duration, countryIso3166,genre,synopsis) VALUES ('"+title+"',"+year+","+duration+",'"+countryCode+"','comedy','"+synopsis+"')");
+            statement.close();
+            return affectedRows == 1;
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
