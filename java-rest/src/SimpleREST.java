@@ -12,6 +12,7 @@ public class SimpleREST {
             VirtualHost host = this.component.getDefaultHost();
             host.attach("/example", SimpleGetExample.class);
             host.attach("/example", SimpleGetExample.class);
+            host.attach("/example2", AnotherGetExample.class);
             this.component.start();
         } catch (Exception e) {
             throw new RuntimeException(e);
