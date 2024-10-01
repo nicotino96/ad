@@ -75,7 +75,7 @@ public class MoviesDataProvider {
                 String firstColumnValue = result.getString(1);
                 String secondColumValue = result.getString(2);
                 String thirdColumValue = result.getString(3);
-                String concatenated = firstColumnValue + ", " + secondColumValue+", "+thirdColumValue;
+                String concatenated = firstColumnValue + "," + secondColumValue+","+thirdColumValue;
                 finalResult.add(concatenated);
             }
             conn.close();
@@ -83,6 +83,22 @@ public class MoviesDataProvider {
             throw new RuntimeException(e);
         }
         return finalResult;
+    }
+    public String getResultsIssue7(){
+        String firstColumnValue = "";
+        String connectionStr = "jdbc:sqlite:db/sqlite3/movies.db";
+        try {
+            Connection conn = DriverManager.getConnection(connectionStr);
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery("SELECT title FROM TMovies WHERE id=5");
+            while(result.next()) {
+                firstColumnValue = result.getString(1);
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return firstColumnValue;
     }
 
 
