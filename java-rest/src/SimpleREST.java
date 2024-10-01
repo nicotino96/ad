@@ -14,6 +14,7 @@ public class SimpleREST {
             host.attach("/example", SimpleGetExample.class);
             host.attach("/example2", AnotherGetExample.class);
             host.attach("/example3", JSONGetExample.class);
+            host.attach("/example4", JSONGetAnotherExample.class);
             this.component.start();
         } catch (Exception e) {
             throw new RuntimeException(e);
