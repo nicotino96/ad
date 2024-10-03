@@ -17,6 +17,7 @@ public class SimpleREST {
             host.attach("/example4", JSONGetAnotherExample.class);
             host.attach("/company",JSONGetCompany.class);
             host.attach("/otherCompany",JSONGetCompany2.class);
+            host.attach("/creature",JSONGetAnimal.class);
             this.component.start();
         } catch (Exception e) {
             throw new RuntimeException(e);
