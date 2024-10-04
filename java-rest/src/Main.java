@@ -5,8 +5,9 @@ public class Main {
         for (String lineOfMyArray : provider.getTwoColumns()) {
             System.out.println(lineOfMyArray);
         }
-        SimpleREST myServer = new SimpleREST();
-        myServer.runServer();
+        MoviesREST server = new MoviesREST();
+        server.runServer();
+
 
     }
 
