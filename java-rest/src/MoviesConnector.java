@@ -102,4 +102,27 @@ public class MoviesConnector {
         }
         return allMovies;
     }
+    public Movie retrieveMovieUsingID(int movieID) {
+        Movie aMovie = null;
+        try {
+            Statement statement = this.connection.createStatement();
+            String sql = "SELECT * FROM TMovies WHERE id = " + movieID;
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                int id = result.getInt(1);
+                String title = result.getString(2);
+                int year = result.getInt(3);
+                int duration = result.getInt(4);
+                String countryIso3166 = result.getString(5);
+                String genre = result.getString(6);
+                String synopsis = result.getString(7);
+                aMovie = new Movie(id, title, year, duration, countryIso3166, genre, synopsis);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return aMovie;
+    }
+
 }
