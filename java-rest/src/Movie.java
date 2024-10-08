@@ -16,6 +16,10 @@ public class Movie {
     private String synopsis;
     private Connection connection;
 
+    public int getDuration() {
+        return duration;
+    }
+
     public Movie(int id, String title, int year, int duration, String countryIso3166, String genre, String synopsis) {
         this.id = id;
         this.title = title;
