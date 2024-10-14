@@ -15,3 +15,5 @@ def big_print():
     por qué el sol sale por el este y se pone por el oeste. ¿Su 
     respuesta? ¡Funciona, no lo toques!
     """)
+def get_color():
+    return "Verde"
