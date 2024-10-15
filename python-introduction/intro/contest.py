@@ -7,11 +7,13 @@ b) Universidad de Bolonia
 c) Universidad de Oxford    
 """
     print(question)
-    choice = input("Escoge tu respuesta (a, b ó c): ")
-    if choice == 'b':
-        print("¡ENHORABUENA! ¡HAS ACERTADO! Ganaste 159 puntos")
-    else:
-        print("¡Fallaste! Pero no pasa nada, ¡sigue intentándolo!")
+    choice=""
+    while choice not in ['a', 'b', 'c']:
+        choice = input("Escoge tu respuesta (a, b ó c): ")
+        if choice == 'b':
+            print("¡ENHORABUENA! ¡HAS ACERTADO! Ganaste 159 puntos")
+        else:
+            print("¡Fallaste! Pero no pasa nada, ¡sigue intentándolo!")
 
 if __name__ == '__main__':
     make_question()
