@@ -14,5 +14,11 @@ def multiples():
 def multiplication_table(numero):
     for i in range(1,11):
         print(numero*i)
+def find_dino(dinosaurioBusq):
+    dinosaurios=["Triceratops", "Tiranosaurio", "Diplodocus", "Pterodáctilo", "Cuellilargo"]
+    for dinosaurio in dinosaurios:
+        if dinosaurio == dinosaurioBusq:
+            return True
+    return False
 if __name__ == '__main__':
     simple_for()
