@@ -20,5 +20,26 @@ def find_dino(dinosaurioBusq):
         if dinosaurio == dinosaurioBusq:
             return True
     return False
+def find_dino2(dinosaur):
+    return dinosaur in ["Triceratops", "Diplodocus", "Pterodáctilo"]
+def example_list_size():
+    list1 = ["Alice", "Bob"]
+    size1 = len(list1)
+    print("El tamaño de la primera lista es: " + str(size1))
+
+    list2 = [None, None, None, None, None]
+    size2 = len(list2)
+    print("El tamaño de la segunda lista es: " + str(size2))
+
+    list3 = [[1, 2], [3, 4]]
+    size3 = len(list3)
+    print("El tamaño de la tercera lista es: " + str(size3))
+def retrieve_value(indice):
+    lista=[4,8,-35,"Pepe Depura",12]
+    if 0 <= indice <= len(lista):
+        return lista[indice]
+    else:
+        return None
+
 if __name__ == '__main__':
     simple_for()
