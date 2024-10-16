@@ -1,6 +1,7 @@
 class ChatBot:
     def __init__(self):
         print("ChatBot activado")
+        self.name="Atlas"
 
     def test_hello(self):
         print("¡Hola!")
