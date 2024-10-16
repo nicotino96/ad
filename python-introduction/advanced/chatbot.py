@@ -1,4 +1,7 @@
 class ChatBot:
+    def __init__(self):
+        print("ChatBot activado")
+
     def test_hello(self):
         print("¡Hola!")
 
