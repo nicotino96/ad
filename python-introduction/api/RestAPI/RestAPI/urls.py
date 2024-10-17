@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from webservice25app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('example', views.my_first_view),
 ]
