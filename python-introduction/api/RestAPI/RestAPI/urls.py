@@ -22,4 +22,5 @@ urlpatterns = [
     path('example/', views.my_first_view),
     path('emperors/', views.vista_emperadores),
     path('api/v1/example', endpoints.my_first_endpoint),
+    path('api/v1/not_found_example', endpoints.my_not_found_endpoint),
 ]
