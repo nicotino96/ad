@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webservice25app import views
+from webservice25app import views, endpoints
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('example/', views.my_first_view),
     path('emperors/', views.vista_emperadores),
+    path('api/v1/example', endpoints.my_first_endpoint),
 ]
