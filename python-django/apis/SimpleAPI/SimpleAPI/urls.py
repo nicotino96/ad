@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('health', endpoints.health_check), # Esta línea mapea la URL a la función Python
     path('six_table', endpoints.table_of_six),
+    path('multiplications/<number>', endpoints.multiplication_table),
 ]
