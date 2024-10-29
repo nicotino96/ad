@@ -1,0 +1,125 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: DashboardAPI
+servers:
+  - url: http://localhost:8000
+paths:
+  /api/v1/dashboards:
+    get:
+      summary: Get all dashboards
+      responses:
+        200:
+          description: An array of dashboards. Order is not relevant
+          content:
+            application/json:    
+              schema:
+                example:
+                  - id: 1
+                    title: Forocoches
+                    summary: En este dashboard se pregunta de todo
+                  - id: 2
+                    title: Foromotos
+                    summary: Sólo preguntas sobre motos
+  /api/v1/dashboards/{dashboardId}/questions:
+    get:
+      summary: Get all the questions belonging to a specific dashboard, ordered from newer to older
+      parameters:
+        - name: dashboardId
+          in: path
+          required: true
+          description: The id of the dashboard that the questions are related to
+          schema:
+            type: int
+        - name: size
+          in: query
+          required: false
+          description: The number of questions to return in the array. If not provided, all of them will be returned
+          schema:
+            type: int
+          example: 5
+        - name: before
+          in: query
+          required: false
+          description: Only questions older than the provided datetime will be returned. Useful for pagination
+          schema:
+            type: int
+          example: "2022-07-13T11:04:49.164Z"
+      responses:
+        200:
+          description: All the questions of the dashboard, containing all its questions
+          content:
+            application/json:    
+              schema:
+                example:
+                  - id: 1
+                    title: Sobre Lofi
+                    summary: ¿Por qué el Lofi es tan popular?
+                    publication_date: '2022-06-07T13:24:59.953Z'
+        400:
+          description: The size parameter is not a valid number
+    post:
+      summary: Create a question
+      parameters:
+        - name: dashboardId
+          in: path
+          required: true
+          description: The id of the dashboard in which the question will be posted
+          schema:
+            type: int
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              example:
+                title: Pitágoras
+                summary: ¿En qué consiste exactamente el teorema de Pitágoras?
+      responses:
+        201:
+          description: The question was created correctly
+        400:
+          description: The client request is missing one or many parameters in the body
+  /api/v1/questions/{questionId}/answers:
+    get:
+      summary: Get all the answers belonging to a specific question, ordered from newer to older
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          description: The id of the question
+          schema:
+            type: int
+      responses:
+        200:
+          description: List containing all the answers to a question, ordered from newer to older
+          content:
+            application/json:
+              schema:
+                example:
+                  - summary: Ni idea, a mi me gusta
+                    publication_date: '2022-06-07T16:24:00.153Z'
+                  - summary: ¿Lofi? ¿Eso qué es?
+                    publication_date: '2022-06-07T15:33:11.221Z'
+
+    post:
+      summary: Create an answer
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          description: The id of the question being answered
+          schema:
+            type: int
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              example:
+                summary: La respuesta definitiva es 42
+      responses:
+        201:
+          description: The answer was created correctly
+        400:
+          description: The client request is missing the required parameters in the body

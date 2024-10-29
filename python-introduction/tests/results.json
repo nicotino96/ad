@@ -1,0 +1,20 @@
+{
+    "commit_info": "77b28f1a63ee3da61e3eda293fa076c9a7ff11cb",
+    "tests_ejecutados": 55,
+    "tests_exitosos": 44,
+    "tests_fallidos": [
+        "test_method_two_params_exists_and_is_invoked_in_run_example (test_024methods_with_parameters.ChatBotExampleMethodsTestCase.test_method_two_params_exists_and_is_invoked_in_run_example)",
+        "test_django_json_example_endpoint_has_correct_bool (test_032json_response.DjangoExampleJSONEndpointTestCase.test_django_json_example_endpoint_has_correct_bool)",
+        "test_django_json_example_endpoint_has_correct_msg (test_032json_response.DjangoExampleJSONEndpointTestCase.test_django_json_example_endpoint_has_correct_msg)",
+        "test_django_json_animals_contains_correct_animal1 (test_034json_response_array.DjangoExampleJSONArrayEndpointTestCase.test_django_json_animals_contains_correct_animal1)",
+        "test_django_json_animals_contains_correct_animal2 (test_034json_response_array.DjangoExampleJSONArrayEndpointTestCase.test_django_json_animals_contains_correct_animal2)",
+        "test_django_json_animals_contains_correct_animal3 (test_034json_response_array.DjangoExampleJSONArrayEndpointTestCase.test_django_json_animals_contains_correct_animal3)"
+    ],
+    "errores": [
+        "test_django_first_view_is_correct (test_030django_app.DjangoFirstViewTestCase.test_django_first_view_is_correct)",
+        "test_django_second_view_contains_correct_list (test_031django_second_view.DjangoSecondViewTestCase.test_django_second_view_contains_correct_list)",
+        "test_django_second_view_contains_correct_subtitle (test_031django_second_view.DjangoSecondViewTestCase.test_django_second_view_contains_correct_subtitle)",
+        "test_django_second_view_contains_correct_title (test_031django_second_view.DjangoSecondViewTestCase.test_django_second_view_contains_correct_title)",
+        "test_django_json_example_404_endpoint_has_correct_status_and_msg (test_033json_response_404.DjangoExampleJSON404EndpointTestCase.test_django_json_example_404_endpoint_has_correct_status_and_msg)"
+    ]
+}
