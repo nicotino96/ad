@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from simplerest25app import endpoints # ¡Acordémonos del import!
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('health', endpoints.health_check), # Esta línea mapea la URL a la función Python
 ]
