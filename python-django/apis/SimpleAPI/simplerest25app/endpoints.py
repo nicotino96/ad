@@ -33,3 +33,9 @@ def multiplication_table(request, number):
         return JsonResponse([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], safe=False)
     else:
         return JsonResponse({"error": "Number not valid. Only one to ten are supported"}, status=404)
+def multiply_number_improved(request, number):
+    result = []
+    for i in range(1, 11):
+        result.append(number * i)
+    return JsonResponse(result,safe=False)
+
