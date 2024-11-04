@@ -19,3 +19,4 @@ def my_list_endpoint(request):
     ]
     return JsonResponse(animals, safe=False)
 
+

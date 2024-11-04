@@ -23,4 +23,5 @@ urlpatterns = [
     path('health', endpoints.health_check), # Esta línea mapea la URL a la función Python
     path('six_table', endpoints.table_of_six),
     path('v2/multiplications/<int:number>', endpoints.multiply_number_improved),
+    path('v3/multiplications', endpoints.multiplication_table_query_param),
 ]

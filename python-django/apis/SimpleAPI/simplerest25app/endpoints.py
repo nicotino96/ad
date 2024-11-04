@@ -38,4 +38,19 @@ def multiply_number_improved(request, number):
     for i in range(1, 11):
         result.append(number * i)
     return JsonResponse(result,safe=False)
+def multiplication_table_query_param(request):
+    number = request.GET.get("i", None)
+    if number is not None:
+        try:
+            number = int(number)
+        except ValueError:
+            return JsonResponse({"error": "Parameter 'i' must be a number"}, status=400)
+        result = []
+        
+        for i in range(1, 11):
+            result.append(number * i)
+        return JsonResponse(result, safe=False)
+    else:
+        return JsonResponse({"error": "Missing 'i' parameter"}, status=400)
+
 
