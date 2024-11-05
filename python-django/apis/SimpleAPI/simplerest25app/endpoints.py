@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from random import sample
 from django.views.decorators.csrf import csrf_exempt
@@ -85,7 +86,15 @@ def resource_example(request, number):
     if request.method != 'POST':
         return JsonResponse({"error": "HTTP method not supported"}, status=405)
     # Precondición comprobada: El método es POST
-    return JsonResponse({"message": "You have sent a POST to the resource " + str(number)})
+    if len(request.body) == 0:
+        # No hay cuerpo de petición
+        # Nos comportamos como antes
+        return JsonResponse({"message": "You have sent a POST to the resource " + str(number)})
+    http_body = json.loads(request.body)
+    client_mood = http_body.get("mood", "No mood")  # "No mood" será un valor por defecto
+    return JsonResponse(
+        {"message": "You have sent a POST to the resource " + str(number) + " and you're " + client_mood})
+
 
 
 
