@@ -108,6 +108,21 @@ def favorite_animal(request):
         return JsonResponse({"message": "Nice! Seven lives will be enough"})
     else:
         return JsonResponse({"message": "OK! Have a nice day"})
+@csrf_exempt
+def example(request):
+    if request.method == "GET":
+        message = "Reading some data, huh?"
+    elif request.method == "POST":
+        message = "This should create a new thing!"
+    elif request.method == "PUT":
+        message = "You can update any element with this"
+    elif request.method == "DELETE":
+        message = "This will remove one or many elements, for sure!"
+    else:
+        # Esta línea nunca se ejecutará si el verbo HTTP no es GET, POST, PUT o DELETE
+        return JsonResponse({"error": "HTTP method not allowed"}, status=405)
+    # Flujo normal
+    return JsonResponse({"message": message})
 
 
 

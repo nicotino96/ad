@@ -27,5 +27,7 @@ urlpatterns = [
     path('prime',endpoints.number_is_prime),
     path('years_since/<int:year>',endpoints.years_since),
     path('resource/<int:number>', endpoints.resource_example),
-    path('favorite_animal', endpoints.favorite_animal)
+    path('favorite_animal', endpoints.favorite_animal),
+    path('example', endpoints.example),
 ]
+    
