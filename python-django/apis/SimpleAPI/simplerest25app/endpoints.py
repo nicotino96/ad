@@ -94,7 +94,20 @@ def resource_example(request, number):
     client_mood = http_body.get("mood", "No mood")  # "No mood" será un valor por defecto
     return JsonResponse(
         {"message": "You have sent a POST to the resource " + str(number) + " and you're " + client_mood})
-
+@csrf_exempt
+def favorite_animal(request):
+    if request.method != 'POST':
+        return JsonResponse({"error": "HTTP method not supported"}, status=405)
+    if len(request.body) == 0:
+        return JsonResponse({"error": "no request body"}, status=400)
+    http_body = json.loads(request.body)
+    animal=http_body.get("name",None)
+    if animal is None:
+        return JsonResponse({"error": "No animal"}, status=400)
+    elif animal=="Cat":
+        return JsonResponse({"message": "Nice! Seven lives will be enough"})
+    else:
+        return JsonResponse({"message": "OK! Have a nice day"})
 
 
 
