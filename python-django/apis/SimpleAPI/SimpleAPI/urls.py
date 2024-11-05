@@ -25,5 +25,6 @@ urlpatterns = [
     path('v2/multiplications/<int:number>', endpoints.multiply_number_improved),
     path('v3/multiplications', endpoints.multiplication_table_query_param),
     path('prime',endpoints.number_is_prime),
-    path('years_since/<int:year>',endpoints.years_since)
+    path('years_since/<int:year>',endpoints.years_since),
+    path('resource/<int:number>', endpoints.resource_example),
 ]

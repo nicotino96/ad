@@ -1,5 +1,6 @@
 from datetime import datetime
 from random import sample
+from django.views.decorators.csrf import csrf_exempt
 
 from django.db.models.expressions import result
 from django.http import JsonResponse
@@ -78,6 +79,14 @@ def years_since(request, year):
         return JsonResponse({"error": "Years in the future are invalid"}, status=400)
     else:
         return JsonResponse({"number_of_years": datetime.now().year-year})
+
+@csrf_exempt
+def resource_example(request, number):
+    if request.method == 'POST':
+        return JsonResponse({"message": "You have sent a POST to the resource " + str(number)})
+    return JsonResponse({"error": "HTTP method not supported"})
+
+
 
 
 
