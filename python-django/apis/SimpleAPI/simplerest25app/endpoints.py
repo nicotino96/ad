@@ -1,3 +1,4 @@
+from datetime import datetime
 from random import sample
 
 from django.db.models.expressions import result
@@ -71,6 +72,13 @@ def number_is_prime(request):
         return JsonResponse({"is_prime_number": True})
     else:
         return JsonResponse({"error": "Missing required 'q' parameter"}, status=400)
+
+def years_since(request, year):
+    if year>datetime.now().year:
+        return JsonResponse({"error": "Years in the future are invalid"}, status=400)
+    else:
+        return JsonResponse({"number_of_years": datetime.now().year-year})
+
 
 
 

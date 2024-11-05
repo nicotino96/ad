@@ -24,5 +24,6 @@ urlpatterns = [
     path('six_table', endpoints.table_of_six),
     path('v2/multiplications/<int:number>', endpoints.multiply_number_improved),
     path('v3/multiplications', endpoints.multiplication_table_query_param),
-    path('prime',endpoints.number_is_prime)
+    path('prime',endpoints.number_is_prime),
+    path('years_since/<int:year>',endpoints.years_since)
 ]
