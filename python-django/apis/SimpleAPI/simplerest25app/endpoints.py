@@ -82,9 +82,11 @@ def years_since(request, year):
 
 @csrf_exempt
 def resource_example(request, number):
-    if request.method == 'POST':
-        return JsonResponse({"message": "You have sent a POST to the resource " + str(number)})
-    return JsonResponse({"error": "HTTP method not supported"})
+    if request.method != 'POST':
+        return JsonResponse({"error": "HTTP method not supported"}, status=405)
+    # Precondición comprobada: El método es POST
+    return JsonResponse({"message": "You have sent a POST to the resource " + str(number)})
+
 
 
 
