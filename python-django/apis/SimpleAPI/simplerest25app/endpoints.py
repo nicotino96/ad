@@ -1,3 +1,6 @@
+from random import sample
+
+from django.db.models.expressions import result
 from django.http import JsonResponse
 
 def health_check(request):
@@ -46,11 +49,30 @@ def multiplication_table_query_param(request):
         except ValueError:
             return JsonResponse({"error": "Parameter 'i' must be a number"}, status=400)
         result = []
-        
+
         for i in range(1, 11):
             result.append(number * i)
         return JsonResponse(result, safe=False)
     else:
         return JsonResponse({"error": "Missing 'i' parameter"}, status=400)
+def number_is_prime(request):
+    number = request.GET.get("q",None)
+    if number is not None:
+        try:
+            number = int(number)
+        except ValueError:
+            return JsonResponse({"error": "Parameter must be a number bigger than zero"}, status=400)
+        if number<1:
+            return JsonResponse({"error": "Parameter must be a number bigger than zero"}, status=400)
+
+        for i in range(2, number):
+            if number%i==0:
+                return JsonResponse({"is_prime_number": False})
+        return JsonResponse({"is_prime_number": True})
+    else:
+        return JsonResponse({"error": "Missing required 'q' parameter"}, status=400)
+
+
+
 
 
