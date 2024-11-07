@@ -30,4 +30,3 @@ urlpatterns = [
     path('favorite_animal', endpoints.favorite_animal),
     path('example', endpoints.example),
 ]
-    
