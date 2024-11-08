@@ -3,6 +3,10 @@ from django.db import models
 class Dashboard(models.Model):
     title = models.CharField(max_length=140)
     summary = models.CharField(max_length=5500)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+
     def to_json(self):
         return {
             "id": self.id,

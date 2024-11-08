@@ -19,7 +19,7 @@ def questions_from_dashboard(request, path_param_id):
     if request.method == "GET":
         before = request.GET.get("before", None)
         size = request.GET.get("size", None)
-        if size is None:
+        if size is not None:
             try:
                 size = int(size)
             except ValueError:
@@ -27,8 +27,7 @@ def questions_from_dashboard(request, path_param_id):
             if before is None:
                 questions = Question.objects.filter(dashboard=path_param_id).order_by('-publication_date')
             else:
-                questions = Question.objects.filter(dashboard=path_param_id).filter(
-                    publication_date__lt=before).order_by("-publication_date")
+                questions = Question.objects.filter(dashboard=path_param_id).filter(publication_date__lt=before).order_by("-publication_date")
         else:
             if before is None:
                 questions = Question.objects.filter(dashboard=path_param_id).order_by('-publication_date')[:size]
