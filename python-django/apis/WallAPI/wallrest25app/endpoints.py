@@ -3,7 +3,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Entry # Es necesario el punto (.)
+from .models import Entry, Comment  # Es necesario el punto (.)
 
 @csrf_exempt
 @csrf_exempt
@@ -25,4 +25,13 @@ def all_entries(request):
         return JsonResponse({"it_was_ok": True}, status=201)
     else:
         return JsonResponse({"error": "HTTP method not supported"}, status=405)
+def entry_comments(request, path_param_id):
+    if request.method != "GET":
+        return JsonResponse({"error": "HTTP method not supported"}, status=405)
+    comments = Comment.objects.filter(entry=path_param_id)
+    json_response = []
+    for row in comments:
+        json_response.append(row.to_json())
+    return JsonResponse(json_response, safe=False)
+
 
