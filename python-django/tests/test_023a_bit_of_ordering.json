@@ -1,0 +1,1 @@
+[{"model": "wallrest25app.entry", "pk": 1, "fields": {"title": "Title1", "content": "Content1", "publication_date": "2022-07-13T10:58:27Z"}}, {"model": "wallrest25app.entry", "pk": 2, "fields": {"title": "Title2", "content": "test_182", "publication_date": "2022-07-13T11:04:50Z"}}]

@@ -9,7 +9,7 @@ from .models import Entry, Comment  # Es necesario el punto (.)
 @csrf_exempt
 def all_entries(request):
     if request.method == "GET":
-        all_rows = Entry.objects.all()
+        all_rows = Entry.objects.order_by("-publication_date")
         json_response = []
         for row in all_rows:
             json_response.append(row.to_json())
