@@ -9,6 +9,7 @@ from .models import Entry, Comment  # Es necesario el punto (.)
 @csrf_exempt
 def all_entries(request):
     if request.method == "GET":
+        older_than = request.GET.get("older_than", None)
         size = request.GET.get("size", None)
         if size is not None:
             try:
@@ -16,9 +17,15 @@ def all_entries(request):
             except ValueError:
                 return JsonResponse({"error": "Wrong size parameter"}, status=400)
         if size is None:
-            all_rows = Entry.objects.order_by("-publication_date")
+            if older_than is None:
+                all_rows = Entry.objects.order_by("-publication_date")
+            else:
+                all_rows = Entry.objects.filter(publication_date__lt=older_than).order_by("-publication_date")
         else:
-            all_rows = Entry.objects.order_by("-publication_date")[:size]
+            if older_than is None:
+                all_rows = Entry.objects.order_by("-publication_date")[:size]
+            else:
+                all_rows = Entry.objects.filter(publication_date__lt=older_than).order_by("-publication_date")[:size]
         json_response = []
         for row in all_rows:
             json_response.append(row.to_json())
