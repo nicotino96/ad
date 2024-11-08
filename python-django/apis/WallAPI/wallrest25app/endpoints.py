@@ -9,7 +9,16 @@ from .models import Entry, Comment  # Es necesario el punto (.)
 @csrf_exempt
 def all_entries(request):
     if request.method == "GET":
-        all_rows = Entry.objects.order_by("-publication_date")
+        size = request.GET.get("size", None)
+        if size is not None:
+            try:
+                size = int(size)
+            except ValueError:
+                return JsonResponse({"error": "Wrong size parameter"}, status=400)
+        if size is None:
+            all_rows = Entry.objects.order_by("-publication_date")
+        else:
+            all_rows = Entry.objects.order_by("-publication_date")[:size]
         json_response = []
         for row in all_rows:
             json_response.append(row.to_json())
