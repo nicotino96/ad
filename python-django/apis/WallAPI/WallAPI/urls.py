@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('entries', endpoints.all_entries),
     path('entries/<int:path_param_id>/comments', endpoints.entry_comments),
-    
+
 ]
