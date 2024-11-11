@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from dashboard25app import endpoints
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/dashboards', endpoints.all_dashboards),
 ]
