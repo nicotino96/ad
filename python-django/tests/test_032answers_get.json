@@ -1,0 +1,68 @@
+
+        [
+  {
+    "model": "dashboard25app.dashboard",
+    "pk": 1,
+    "fields": {
+      "title": "Forocoches",
+      "summary": "Test"
+    }
+  },
+  {
+    "model": "dashboard25app.question",
+    "pk": 1,
+    "fields": {
+      "dashboard": 1,
+      "title": "Pitagoras1",
+      "summary": "Test1",
+      "publication_date": "2022-07-14T09:59:42.347Z"
+    }
+  },
+  {
+    "model": "dashboard25app.question",
+    "pk": 2,
+    "fields": {
+      "dashboard": 1,
+      "title": "Pitagoras2",
+      "summary": "Test2",
+      "publication_date": "2022-07-14T10:01:42.280Z"
+    }
+  },
+  {
+    "model": "dashboard25app.answer",
+    "pk": 1,
+    "fields": {
+      "question": 2,
+      "description": "test_592",
+      "publication_date": "2022-07-14T10:03:10.516Z"
+    }
+  },
+  {
+    "model": "dashboard25app.answer",
+    "pk": 2,
+    "fields": {
+      "question": 2,
+      "description": "test_124",
+      "publication_date": "2022-07-14T10:03:20.062Z"
+    }
+  },
+  {
+    "model": "dashboard25app.answer",
+    "pk": 3,
+    "fields": {
+      "question": 2,
+      "description": "test_295",
+      "publication_date": "2022-07-14T10:03:30.330Z"
+    }
+  },
+  {
+    "model": "dashboard25app.answer",
+    "pk": 4,
+    "fields": {
+      "question": 1,
+      "description": "Test",
+      "publication_date": "2022-07-14T10:03:30.330Z"
+    }
+  }
+]
+        

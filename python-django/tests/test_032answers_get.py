@@ -101,7 +101,7 @@ class DashboardsAPIAnswersEndpointTestCase(unittest.TestCase):
     def test_question2answers_contains_expected_first_element(self):
         def test_body():
             expected = {
-                "summary": self.r3,
+                "description": self.r3,
                 "publication_date": "2022-07-14T10:03:30.330Z"
             }
             self.__assert_endpoint("api/v1/questions/2/answers", expected_json_content=expected, expected_json_array_index=0)
@@ -111,7 +111,7 @@ class DashboardsAPIAnswersEndpointTestCase(unittest.TestCase):
     def test_question2answers_contains_expected_second_element(self):
         def test_body():
             expected = {
-                "summary": self.r2,
+                "description": self.r2,
                 "publication_date": "2022-07-14T10:03:20.062Z"
             }
             self.__assert_endpoint("api/v1/questions/2/answers", expected_json_content=expected, expected_json_array_index=1)
@@ -121,7 +121,7 @@ class DashboardsAPIAnswersEndpointTestCase(unittest.TestCase):
     def test_question2answers_contains_expected_third_element(self):
         def test_body():
             expected = {
-                "summary": self.r1,
+                "description": self.r1,
                 "publication_date": "2022-07-14T10:03:10.516Z"
             }
             self.__assert_endpoint("api/v1/questions/2/answers", expected_json_content=expected, expected_json_array_index=2)

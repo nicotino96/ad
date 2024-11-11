@@ -75,7 +75,7 @@ class DashboardsAPINewAnswerEndpointTestCase(unittest.TestCase):
             # Send POST
             self.__assert_endpoint("api/v1/questions/1/answers", client_json=client_body, expected_status_code=201)
             # And assert content in DB
-            self.__assert_test_database_contains("SELECT id, summary FROM dashboard25app_answer WHERE question_id=1", "|An Answer2")
+            self.__assert_test_database_contains("SELECT id, description FROM dashboard25app_answer WHERE question_id=1", "|An Answer2")
         # Run server and run test
         self.__test_with_server_alive(test_body)
 
@@ -85,7 +85,7 @@ class DashboardsAPINewAnswerEndpointTestCase(unittest.TestCase):
             # Send POST
             self.__assert_endpoint("api/v1/questions/2/answers", client_json=client_body, expected_status_code=201)
             # And assert content in DB
-            self.__assert_test_database_contains("SELECT id, summary FROM dashboard25app_answer WHERE question_id=2", "|An Answer3")
+            self.__assert_test_database_contains("SELECT id, description FROM dashboard25app_answer WHERE question_id=2", "|An Answer3")
         # Run server and run test
         self.__test_with_server_alive(test_body)
 
