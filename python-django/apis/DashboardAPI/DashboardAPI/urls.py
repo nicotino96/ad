@@ -23,4 +23,5 @@ from dashboard25app import endpoints
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/dashboards', endpoints.all_dashboards),
+    path('api/v1/dashboards/<int:path_param_id>/questions', endpoints.questions_from_dashboard),
 ]
