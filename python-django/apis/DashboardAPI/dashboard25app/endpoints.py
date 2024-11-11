@@ -3,7 +3,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Dashboard
+from .models import Dashboard, Answer
 from .models import Question
 
 def all_dashboards(request):
@@ -48,6 +48,19 @@ def questions_from_dashboard(request, path_param_id):
         new_question = Question(title=client_title, summary=client_summary, dashboard_id=path_param_id)
         new_question.save()
         return JsonResponse({"success": True}, status=201)
+
+    else:
+        return JsonResponse({"error": "HTTP method not supported"}, status=405)
+def answers_for_questions(request, path_param_id):
+    if request.method == "GET":
+        answers = Answer.objects.filter(question_id=path_param_id).order_by('-publication_date')
+        if answers is not None:
+            json_response = []
+            for row in answers:
+                json_response.append(row.to_json())
+            return JsonResponse(json_response, safe=False)
+        else:
+            return JsonResponse({"error": "Not found"}, status=405)
 
     else:
         return JsonResponse({"error": "HTTP method not supported"}, status=405)

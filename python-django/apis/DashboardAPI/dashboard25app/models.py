@@ -31,5 +31,10 @@ class Answer(models.Model):
     question = models.ForeignKey(Question,on_delete=models.CASCADE)
     description = models.CharField(max_length=5500)
     publication_date = models.DateTimeField(auto_now=True)
+    def to_json(self):
+        return {
+            "summary": self.description,
+            "publication_date": self.publication_date
+        }
 
 # Create your models here.
