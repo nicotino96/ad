@@ -51,9 +51,10 @@ def questions_from_dashboard(request, path_param_id):
 
     else:
         return JsonResponse({"error": "HTTP method not supported"}, status=405)
-def answers_for_questions(request, path_param_id):
+@csrf_exempt
+def answers_for_questions(request, question_id):
     if request.method == "GET":
-        answers = Answer.objects.filter(question_id=path_param_id).order_by('-publication_date')
+        answers = Answer.objects.filter(question_id=question_id).order_by('-publication_date')
         if answers is not None:
             json_response = []
             for row in answers:
@@ -61,6 +62,18 @@ def answers_for_questions(request, path_param_id):
             return JsonResponse(json_response, safe=False)
         else:
             return JsonResponse({"error": "Not found"}, status=405)
+    elif request.method == "POST":
+        client_json = json.loads(request.body)
+        client_summary = client_json.get("summary", None)
+        if client_summary is None:
+            return JsonResponse({"error": "Missing summary or title in request body"}, status=400)
+        try:
+            question = Question.objects.get(id=question_id)
+        except Question.DoesNotExist:
+            return JsonResponse({"error": "No question"}, status=404)
+        new_answer = Answer(question=question, description=client_summary)
+        new_answer.save()
+        return JsonResponse({"success": True}, status=201)
 
     else:
         return JsonResponse({"error": "HTTP method not supported"}, status=405)

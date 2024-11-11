@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/dashboards', endpoints.all_dashboards),
     path('api/v1/dashboards/<int:path_param_id>/questions', endpoints.questions_from_dashboard),
-    path('api/v1/questions/<int:path_param_id>/answers', endpoints.answers_for_questions)
+    path('api/v1/questions/<int:question_id>/answers', endpoints.answers_for_questions)
 ]

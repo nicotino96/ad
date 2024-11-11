@@ -13,6 +13,7 @@ class Dashboard(models.Model):
 
 
 class Question(models.Model):
+    DoesNotExist = None
     dashboard = models.ForeignKey(Dashboard,on_delete=models.CASCADE)
     title = models.CharField(max_length=140)
     summary = models.CharField(max_length=5500)
@@ -33,7 +34,7 @@ class Answer(models.Model):
     publication_date = models.DateTimeField(auto_now=True)
     def to_json(self):
         return {
-            "summary": self.description,
+            "description": self.description,
             "publication_date": self.publication_date
         }
 
