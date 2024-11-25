@@ -4,7 +4,7 @@ import bcrypt
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import secrets
-from .models import UserSession, Category
+from .models import UserSession, Category, Idea
 from idearest25app.models import CustomUser
 
 
@@ -70,6 +70,31 @@ def categories(request):
         for category in categories
     ]
     return JsonResponse(json_response, safe=False, status=200)
+
+@csrf_exempt
+def ideas(request, category_id):
+    if request.method == 'POST':
+        try:
+            category = Category.objects.get(id=category_id)
+            body_json = json.loads(request.body)
+            json_title = body_json['new_idea_title']
+            json_description = body_json['description']
+            idea = Idea()
+            # ¿De quién es la idea?
+            idea.title = json_title
+            idea.description = json_description
+            idea.category = category
+            idea.save()
+            return JsonResponse({"success": True}, status=201)
+        except KeyError:
+            return JsonResponse({"error": "You are missing a parameter"}, status=400)
+        except Category.DoesNotExist:
+            return JsonResponse({"error": "Category not found"}, status=404)
+    elif request.method == 'GET':
+    # El usuario quiere consultar las ideas de la categoría con id == category_id
+    pass
+    else:
+    return JsonResponse({'error': 'HTTP method unsupported'}, status=405)
 
 
 
