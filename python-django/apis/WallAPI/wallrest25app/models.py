@@ -16,7 +16,6 @@ class Entry(models.Model):
 class Comment(models.Model): # Nuevo modelo
     content = models.CharField(max_length=1900)
     entry = models.ForeignKey(Entry, on_delete=models.CASCADE)
-
     def to_json(self):
         return {
             "info": self.content,

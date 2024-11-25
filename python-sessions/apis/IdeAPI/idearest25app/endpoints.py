@@ -4,7 +4,7 @@ import bcrypt
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import secrets
-from .models import UserSession
+from .models import UserSession, Category
 from idearest25app.models import CustomUser
 
 
@@ -59,6 +59,17 @@ def sessions(request):
         return JsonResponse({"token": random_token}, status=201)
     else:
         return JsonResponse({'error': 'Invalid password'}, status=401)
+
+@csrf_exempt
+def categories(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'HTTP method unsupported'}, status=405)
+    categories = Category.objects.all().values('id', 'title')
+    json_response = [
+        {"category_id": category['id'], "category_name": category['title']}
+        for category in categories
+    ]
+    return JsonResponse(json_response, safe=False, status=200)
 
 
 

@@ -1,0 +1,24 @@
+[
+{
+ "model": "idearest25app.category",
+ "pk": 1,
+ "fields": {
+  "title": "Title7831"
+ }
+},
+{
+ "model": "idearest25app.category",
+ "pk": 2,
+ "fields": {
+  "title": "Title1614"
+ }
+},
+{
+ "model": "idearest25app.category",
+ "pk": 3,
+ "fields": {
+  "title": "Title6942"
+ }
+}
+]
+        

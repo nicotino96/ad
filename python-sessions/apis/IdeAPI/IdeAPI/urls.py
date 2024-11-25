@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/health', endpoints.health_check),
     path('v1/users', endpoints.users),
-    path('v1/sessions', endpoints.sessions)
+    path('v1/sessions', endpoints.sessions),
+    path('v1/categories', endpoints.categories),
 ]

@@ -14,6 +14,7 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+
 class Idea(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=2400)
