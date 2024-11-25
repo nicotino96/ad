@@ -42,20 +42,23 @@ def users(request):
 def sessions(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'HTTP method unsupported'}, status=405)
-    body_json = json.loads(request.body)
-    json_email = body_json['login_email']
-    json_password = body_json['login_password']
+    try:
+        body_json = json.loads(request.body)
+        json_email = body_json['login_email']
+        json_password = body_json['login_password']
+    except (KeyError, json.JSONDecodeError):
+        return JsonResponse({'error': 'Missing parameter in body'}, status=400)
     try:
         db_user = CustomUser.objects.get(e_mail=json_email)
     except CustomUser.DoesNotExist:
-        pass
+        return JsonResponse({'error': 'User does not exist'}, status=404)
     if bcrypt.checkpw(json_password.encode('utf8'), db_user.encrypted_password.encode('utf8')):
         random_token = secrets.token_hex(10)
         session = UserSession(creator=db_user, token=random_token)
         session.save()
         return JsonResponse({"token": random_token}, status=201)
     else:
-        pass
+        return JsonResponse({'error': 'Invalid password'}, status=401)
 
 
 
