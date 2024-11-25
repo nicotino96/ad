@@ -3,7 +3,8 @@ import json
 import bcrypt
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+import secrets
+from .models import UserSession
 from idearest25app.models import CustomUser
 
 
@@ -37,5 +38,24 @@ def users(request):
     user_object = CustomUser(e_mail=json_email, username=json_username, encrypted_password=salted_and_hashed_pass)
     user_object.save()
     return JsonResponse({"is_registered": True}, status=201)
+@csrf_exempt
+def sessions(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'HTTP method unsupported'}, status=405)
+    body_json = json.loads(request.body)
+    json_email = body_json['login_email']
+    json_password = body_json['login_password']
+    try:
+        db_user = CustomUser.objects.get(e_mail=json_email)
+    except CustomUser.DoesNotExist:
+        pass
+    if bcrypt.checkpw(json_password.encode('utf8'), db_user.encrypted_password.encode('utf8')):
+        random_token = secrets.token_hex(10)
+        session = UserSession(creator=db_user, token=random_token)
+        session.save()
+        return JsonResponse({"token": random_token}, status=201)
+    else:
+        pass
+
 
 
