@@ -10,6 +10,7 @@ class UserSession(models.Model):
     token = models.CharField(unique=True, max_length=35)
 
 class Category(models.Model):
+    DoesNotExist = None
     title = models.CharField(max_length=60, unique=True)
     def __str__(self):
         return self.title

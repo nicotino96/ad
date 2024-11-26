@@ -81,6 +81,10 @@ def ideas(request, category_id):
             json_description = body_json['description']
             idea = Idea()
             # ¿De quién es la idea?
+            authenticated_user = __get_request_user(request)
+            if authenticated_user is None:
+                return JsonResponse({"error": "Authentication not valid"}, status=401)
+            idea.user = authenticated_user
             idea.title = json_title
             idea.description = json_description
             idea.category = category
@@ -90,11 +94,17 @@ def ideas(request, category_id):
             return JsonResponse({"error": "You are missing a parameter"}, status=400)
         except Category.DoesNotExist:
             return JsonResponse({"error": "Category not found"}, status=404)
-    elif request.method == 'GET':
-    # El usuario quiere consultar las ideas de la categoría con id == category_id
-    pass
-    else:
-    return JsonResponse({'error': 'HTTP method unsupported'}, status=405)
+
+
+def __get_request_user(request):
+    header_token = request.headers.get('Api-Session-Token', None)
+    if header_token is None:
+        return None
+    try:
+        db_session = UserSession.objects.get(token=header_token)
+        return db_session.creator
+    except UserSession.DoesNotExist:
+        return None
 
 
 
