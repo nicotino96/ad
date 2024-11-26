@@ -94,7 +94,22 @@ def ideas(request, category_id):
             return JsonResponse({"error": "You are missing a parameter"}, status=400)
         except Category.DoesNotExist:
             return JsonResponse({"error": "Category not found"}, status=404)
-
+    elif request.method =='GET':
+        try:
+            category = Category.objects.get(id=category_id)
+            ideas = Idea.objects.filter(category=category)
+            json_response = [
+                {
+                    "id": idea.id,
+                    "author_id": idea.user.id,
+                    "idea_name": idea.title,
+                    "description": idea.description
+                }
+                for idea in ideas
+            ]
+            return JsonResponse(json_response, safe=False, status=200)
+        except Category.DoesNotExist:
+            return JsonResponse({"error": "Category not found"}, status=404)
 
 def __get_request_user(request):
     header_token = request.headers.get('Api-Session-Token', None)

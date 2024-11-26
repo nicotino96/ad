@@ -1,0 +1,84 @@
+[
+{
+ "model": "idearest25app.category",
+ "pk": 1,
+ "fields": {
+  "title": "Cat1"
+ }
+},
+{
+ "model": "idearest25app.category",
+ "pk": 2,
+ "fields": {
+  "title": "Cat2"
+ }
+},
+{
+ "model": "idearest25app.customuser",
+ "pk": 1,
+ "fields": {
+  "e_mail": "test_1732655466.9670308@test.co.uk",
+  "username": "Test User",
+  "encrypted_password": "$2b$12$Re22Ht4N5pZxrLGEgZcy..ZmrycSInMpWE.Lk6BYcYyw7OufwzvBS"
+ }
+},
+{
+ "model": "idearest25app.customuser",
+ "pk": 2,
+ "fields": {
+  "e_mail": "test2_1732655466.9670308@test.co.uk",
+  "username": "Test User",
+  "encrypted_password": "$2b$12$Re22Ht4N5pZxrLGEgZcy..ZmrycSInMpWE.Lk6BYcYyw7OufwzvBS"
+ }
+},
+{
+ "model": "idearest25app.customuser",
+ "pk": 3,
+ "fields": {
+  "e_mail": "test3_1732655466.9670308@test.co.uk",
+  "username": "Test User",
+  "encrypted_password": "$2b$12$Re22Ht4N5pZxrLGEgZcy..ZmrycSInMpWE.Lk6BYcYyw7OufwzvBS"
+ }
+},
+{
+ "model": "idearest25app.idea",
+ "pk": 1,
+ "fields": {
+  "title": "Idea1",
+  "description": "Description1",
+  "user": 1,
+  "category": 1
+ }
+},
+{
+ "model": "idearest25app.idea",
+ "pk": 2,
+ "fields": {
+  "title": "Idea2",
+  "description": "Description2",
+  "user": 3,
+  "category": 1
+ }
+},
+{
+ "model": "idearest25app.idea",
+ "pk": 3,
+ "fields": {
+  "title": "Idea3",
+  "description": "Description3",
+  "user": 2,
+  "category": 2
+ }
+},
+{
+ "model": "idearest25app.idea",
+ "pk": 4,
+ "fields": {
+  "title": "Idea4",
+  "description": "Description4",
+  "user": 2,
+  "category": 2
+ }
+}
+]
+        
