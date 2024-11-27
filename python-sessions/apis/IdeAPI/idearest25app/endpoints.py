@@ -2,9 +2,10 @@ import json
 
 import bcrypt
 from django.http import JsonResponse
+from django.template.base import Token
 from django.views.decorators.csrf import csrf_exempt
 import secrets
-from .models import UserSession, Category, Idea
+from .models import UserSession, Category, Idea, Comment
 from idearest25app.models import CustomUser
 
 
@@ -121,5 +122,31 @@ def __get_request_user(request):
     except UserSession.DoesNotExist:
         return None
 
+@csrf_exempt
+def comments(request, idea_id):
+    if request.method == 'POST':
+        # El usuario va a añadir un comentario a la idea
+        try:
+            idea = Idea.objects.get(id=idea_id)
+            body_json = json.loads(request.body)
+            json_content = body_json['content']  # El contenido del comentario
 
+            # Obtener al usuario autenticado mediante el token
+            authenticated_user = __get_request_user(request)
+            if authenticated_user is None:
+                return JsonResponse({"error": "Not valid or missing token"}, status=401)
+
+            # Crear y guardar el nuevo comentario
+            comment = Comment()
+            comment.user = authenticated_user
+            comment.content = json_content
+            comment.idea = idea
+            comment.save()
+
+            return JsonResponse({"success": True}, status=201)
+
+        except KeyError:
+            return JsonResponse({"error": "Missing parameter in json request body"}, status=400)
+        except Idea.DoesNotExist:
+            return JsonResponse({"error": "Idea does not exist"}, status=404)
 

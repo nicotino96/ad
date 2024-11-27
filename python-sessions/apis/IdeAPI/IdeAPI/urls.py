@@ -25,4 +25,5 @@ urlpatterns = [
     path('v1/sessions', endpoints.sessions),
     path('v1/categories', endpoints.categories),
     path('v1/categories/<int:category_id>/ideas', endpoints.ideas),
+    path('v1/ideas/<int:idea_id>/comments', endpoints.comments),
 ]
