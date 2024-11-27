@@ -149,4 +149,26 @@ def comments(request, idea_id):
             return JsonResponse({"error": "Missing parameter in json request body"}, status=400)
         except Idea.DoesNotExist:
             return JsonResponse({"error": "Idea does not exist"}, status=404)
+    elif request.method == 'GET':
+        try:
+            # Obtener la idea por su ID
+            idea = Idea.objects.get(id=idea_id)
+
+            # Recuperar todos los comentarios asociados a la idea
+            comments_list = [
+                {
+                    "id": comment.id,
+                    "author_id": comment.user.id,
+                    "content": comment.content
+                }
+                for comment in Comment.objects.filter(idea=idea)
+            ]
+
+            return JsonResponse(comments_list, safe=False, status=200)
+
+        except Idea.DoesNotExist:
+            return JsonResponse({"error": f"Idea {idea_id} doesn't exist"}, status=404)
+
+    else:
+        return JsonResponse({'error': 'Unsupported HTTP method'}, status=405)
 

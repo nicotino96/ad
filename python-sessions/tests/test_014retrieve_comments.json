@@ -1,0 +1,93 @@
+[
+{
+ "model": "idearest25app.category",
+ "pk": 1,
+ "fields": {
+  "title": "Cat1"
+ }
+},
+{
+ "model": "idearest25app.customuser",
+ "pk": 1,
+ "fields": {
+  "e_mail": "test_1732729759.9965687@test.co.uk",
+  "username": "Test User",
+  "encrypted_password": "$2b$12$Re22Ht4N5pZxrLGEgZcy..ZmrycSInMpWE.Lk6BYcYyw7OufwzvBS"
+ }
+},
+{
+ "model": "idearest25app.customuser",
+ "pk": 2,
+ "fields": {
+  "e_mail": "test2_1732729759.9965687@test.co.uk",
+  "username": "Test User",
+  "encrypted_password": "$2b$12$Re22Ht4N5pZxrLGEgZcy..ZmrycSInMpWE.Lk6BYcYyw7OufwzvBS"
+ }
+},
+{
+ "model": "idearest25app.customuser",
+ "pk": 3,
+ "fields": {
+  "e_mail": "test3_1732729759.9965687@test.co.uk",
+  "username": "Test User",
+  "encrypted_password": "$2b$12$Re22Ht4N5pZxrLGEgZcy..ZmrycSInMpWE.Lk6BYcYyw7OufwzvBS"
+ }
+},
+{
+ "model": "idearest25app.idea",
+ "pk": 1,
+ "fields": {
+  "title": "Idea1",
+  "description": "Description1",
+  "user": 1,
+  "category": 1
+ }
+},
+{
+ "model": "idearest25app.idea",
+ "pk": 2,
+ "fields": {
+  "title": "Idea2",
+  "description": "Description2",
+  "user": 3,
+  "category": 1
+ }
+},
+{
+ "model": "idearest25app.comment",
+ "pk": 1,
+ "fields": {
+  "content": "Comment1",
+  "idea": 1,
+  "user": 1
+ }
+},
+{
+ "model": "idearest25app.comment",
+ "pk": 2,
+ "fields": {
+  "content": "Comment2",
+  "idea": 1,
+  "user": 3
+ }
+},
+{
+ "model": "idearest25app.comment",
+ "pk": 3,
+ "fields": {
+  "content": "Comment3",
+  "idea": 2,
+  "user": 2
+ }
+},
+{
+ "model": "idearest25app.comment",
+ "pk": 4,
+ "fields": {
+  "content": "Comment4",
+  "idea": 2,
+  "user": 2
+ }
+}
+]
+        
